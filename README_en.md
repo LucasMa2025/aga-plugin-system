@@ -73,7 +73,7 @@ AGAPlugin/
 ### Package Dependency
 
 ```
-+-----------------------------------------------------+
++------------------------------------------------------+
 |                   AGA Ecosystem                      |
 |                                                      |
 |  +-------------+                                     |
@@ -87,12 +87,12 @@ AGAPlugin/
 |  | (no aga-core|  | (requires aga-core)|             |
 |  |  dependency)|  |                    |             |
 |  +-------------+  +--------------------+             |
-+-----------------------------------------------------+
++------------------------------------------------------+
 ```
 
-- **aga-core** can be used **completely standalone**. Only dependency: `torch>=2.0.0`.
-- **aga-knowledge** is independent — it manages plaintext knowledge and provides vector retrieval via the `BaseRetriever` protocol.
-- **aga-observability** requires `aga-core` — it subscribes to `EventBus` events for monitoring.
+-   **aga-core** can be used **completely standalone**. Only dependency: `torch>=2.0.0`.
+-   **aga-knowledge** is independent — it manages plaintext knowledge and provides vector retrieval via the `BaseRetriever` protocol.
+-   **aga-observability** requires `aga-core` — it subscribes to `EventBus` events for monitoring.
 
 ---
 
@@ -180,34 +180,34 @@ pip install aga-core[knowledge,observability] # Full stack
 
 ### aga-core
 
-| Document | Language |
-| --- | --- |
-| [README (English)](aga/README_en.md) | English |
-| [README (中文)](aga/README_zh.md) | 中文 |
-| [Product Documentation (English)](aga/docs/product_doc_en.md) | English |
-| [产品说明书 (中文)](aga/docs/product_doc_zh.md) | 中文 |
-| [User Manual (English)](aga/docs/user_manual_en.md) | English |
-| [用户手册 (中文)](aga/docs/user_manual_zh.md) | 中文 |
+| Document                                                      | Language |
+| ------------------------------------------------------------- | -------- |
+| [README (English)](aga/README_en.md)                          | English  |
+| [README (中文)](aga/README_zh.md)                             | 中文     |
+| [Product Documentation (English)](aga/docs/product_doc_en.md) | English  |
+| [产品说明书 (中文)](aga/docs/product_doc_zh.md)               | 中文     |
+| [User Manual (English)](aga/docs/user_manual_en.md)           | English  |
+| [用户手册 (中文)](aga/docs/user_manual_zh.md)                 | 中文     |
 
 ### aga-knowledge
 
-| Document | Language |
-| --- | --- |
-| [README (English)](aga_knowledge/README_en.md) | English |
-| [README (中文)](aga_knowledge/README_zh.md) | 中文 |
-| [Product Documentation (English)](aga_knowledge/docs/product_doc_en.md) | English |
-| [产品说明书 (中文)](aga_knowledge/docs/product_doc_zh.md) | 中文 |
-| [User Manual (English)](aga_knowledge/docs/user_manual_en.md) | English |
-| [用户手册 (中文)](aga_knowledge/docs/user_manual_zh.md) | 中文 |
+| Document                                                                | Language |
+| ----------------------------------------------------------------------- | -------- |
+| [README (English)](aga_knowledge/README_en.md)                          | English  |
+| [README (中文)](aga_knowledge/README_zh.md)                             | 中文     |
+| [Product Documentation (English)](aga_knowledge/docs/product_doc_en.md) | English  |
+| [产品说明书 (中文)](aga_knowledge/docs/product_doc_zh.md)               | 中文     |
+| [User Manual (English)](aga_knowledge/docs/user_manual_en.md)           | English  |
+| [用户手册 (中文)](aga_knowledge/docs/user_manual_zh.md)                 | 中文     |
 
 ### aga-observability
 
-| Document | Language |
-| --- | --- |
-| [README (English)](aga_observability/README_en.md) | English |
-| [README (中文)](aga_observability/README_zh.md) | 中文 |
-| [User Manual (English)](aga_observability/docs/user_manual_en.md) | English |
-| [用户手册 (中文)](aga_observability/docs/user_manual_zh.md) | 中文 |
+| Document                                                          | Language |
+| ----------------------------------------------------------------- | -------- |
+| [README (English)](aga_observability/README_en.md)                | English  |
+| [README (中文)](aga_observability/README_zh.md)                   | 中文     |
+| [User Manual (English)](aga_observability/docs/user_manual_en.md) | English  |
+| [用户手册 (中文)](aga_observability/docs/user_manual_zh.md)       | 中文     |
 
 ---
 
@@ -215,10 +215,10 @@ pip install aga-core[knowledge,observability] # Full stack
 
 Example configuration files are provided in the `configs/` directory:
 
-| File | Purpose | Used By |
-| --- | --- | --- |
-| [`configs/portal_config.yaml`](configs/portal_config.yaml) | Knowledge Portal server, persistence, messaging, and governance configuration | `aga-knowledge` Portal |
-| [`configs/runtime_config.yaml`](configs/runtime_config.yaml) | AGA runtime parameters, entropy gating, decay, sync, and device configuration | `aga-core` AGAPlugin |
+| File                                                         | Purpose                                                                       | Used By                |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------- | ---------------------- |
+| [`configs/portal_config.yaml`](configs/portal_config.yaml)   | Knowledge Portal server, persistence, messaging, and governance configuration | `aga-knowledge` Portal |
+| [`configs/runtime_config.yaml`](configs/runtime_config.yaml) | AGA runtime parameters, entropy gating, decay, sync, and device configuration | `aga-core` AGAPlugin   |
 
 ### Usage
 
@@ -238,37 +238,37 @@ config = PortalConfig.from_yaml("configs/portal_config.yaml")
 
 ### aga-core v4.4.0
 
-- **3-line integration** — `AGAPlugin(config).attach(model)`
-- **3-stage entropy gating** — Gate-0 (namespace) / Gate-1 (entropy) / Gate-2 (confidence)
-- **Bottleneck attention injection** — Query projection → Top-K routing → Value projection
-- **GPU-resident KVStore** — LRU eviction + knowledge pinning + namespace isolation
-- **Streaming generation** — Per-token knowledge injection during generation
-- **Standard Retriever protocol** — `BaseRetriever` interface for pluggable retrieval
-- **Slot Governance** — Budget control, semantic dedup, cooldown, stability detection
-- **HuggingFace + vLLM adapters** — LLaMA, Qwen, Mistral, GPT-2, Phi, Gemma, Falcon
-- **Tensor Parallelism** — `TPManager` for multi-GPU KVStore broadcast
-- **Fail-Open safety** — Exceptions never block inference
+-   **3-line integration** — `AGAPlugin(config).attach(model)`
+-   **3-stage entropy gating** — Gate-0 (namespace) / Gate-1 (entropy) / Gate-2 (confidence)
+-   **Bottleneck attention injection** — Query projection → Top-K routing → Value projection
+-   **GPU-resident KVStore** — LRU eviction + knowledge pinning + namespace isolation
+-   **Streaming generation** — Per-token knowledge injection during generation
+-   **Standard Retriever protocol** — `BaseRetriever` interface for pluggable retrieval
+-   **Slot Governance** — Budget control, semantic dedup, cooldown, stability detection
+-   **HuggingFace + vLLM adapters** — LLaMA, Qwen, Mistral, GPT-2, Phi, Gemma, Falcon
+-   **Tensor Parallelism** — `TPManager` for multi-GPU KVStore broadcast
+-   **Fail-Open safety** — Exceptions never block inference
 
 ### aga-knowledge v0.3.0
 
-- **Plaintext knowledge** — `condition/decision` pairs, human-readable
-- **4 persistence backends** — Memory, SQLite, PostgreSQL, Redis
-- **Portal REST API** — FastAPI-based knowledge CRUD + image asset serving
-- **Hybrid retrieval** — HNSW (dense) + BM25 (sparse) + RRF (fusion)
-- **AGACoreAlignment** — Encoder-core dimension/norm mandatory alignment
-- **Document chunking** — 5 strategies + DocumentChunker + ConditionGenerator + ImageHandler
-- **Cross-instance sync** — Redis Pub/Sub real-time knowledge synchronization
-- **Version control** — Knowledge versioning with rollback and diff
+-   **Plaintext knowledge** — `condition/decision` pairs, human-readable
+-   **4 persistence backends** — Memory, SQLite, PostgreSQL, Redis
+-   **Portal REST API** — FastAPI-based knowledge CRUD + image asset serving
+-   **Hybrid retrieval** — HNSW (dense) + BM25 (sparse) + RRF (fusion)
+-   **AGACoreAlignment** — Encoder-core dimension/norm mandatory alignment
+-   **Document chunking** — 5 strategies + DocumentChunker + ConditionGenerator + ImageHandler
+-   **Cross-instance sync** — Redis Pub/Sub real-time knowledge synchronization
+-   **Version control** — Knowledge versioning with rollback and diff
 
 ### aga-observability v1.0.0
 
-- **Prometheus exporter** — 15+ metrics (counters, histograms, gauges)
-- **Grafana dashboards** — Auto-generated 5-group dashboard JSON
-- **SLO/SLI alerting** — Configurable rules with webhook/callback channels
-- **Structured logging** — JSON/Text format with file rotation
-- **Persistent audit** — JSONL or SQLite with retention policies
-- **Health checking** — HTTP endpoint for Kubernetes probes
-- **Zero intrusion** — EventBus subscription, no aga-core modification
+-   **Prometheus exporter** — 15+ metrics (counters, histograms, gauges)
+-   **Grafana dashboards** — Auto-generated 5-group dashboard JSON
+-   **SLO/SLI alerting** — Configurable rules with webhook/callback channels
+-   **Structured logging** — JSON/Text format with file rotation
+-   **Persistent audit** — JSONL or SQLite with retention policies
+-   **Health checking** — HTTP endpoint for Kubernetes probes
+-   **Zero intrusion** — EventBus subscription, no aga-core modification
 
 ---
 
@@ -292,11 +292,11 @@ python -m pytest tests/test_observability/ -v
 
 ## Roadmap
 
-| Package | Current | Next Milestone |
-| --- | --- | --- |
-| **aga-core** | v4.4.0 — Retriever protocol, slot governance, streaming | v5.0 — Per-layer knowledge, INT8 KVStore, adaptive bottleneck |
-| **aga-knowledge** | v0.3.0 — HNSW+BM25+RRF, DocumentChunker, AGACoreAlignment | v0.4.x — Contrastive fine-tuning, distributed encoder, Prometheus |
-| **aga-observability** | v1.0.0 — Prometheus, Grafana, alerting, audit, health | v1.1.0 — OpenTelemetry traces, distributed aggregation |
+| Package               | Current                                                   | Next Milestone                                                    |
+| --------------------- | --------------------------------------------------------- | ----------------------------------------------------------------- |
+| **aga-core**          | v4.4.0 — Retriever protocol, slot governance, streaming   | v5.0 — Per-layer knowledge, INT8 KVStore, adaptive bottleneck     |
+| **aga-knowledge**     | v0.3.0 — HNSW+BM25+RRF, DocumentChunker, AGACoreAlignment | v0.4.x — Contrastive fine-tuning, distributed encoder, Prometheus |
+| **aga-observability** | v1.0.0 — Prometheus, Grafana, alerting, audit, health     | v1.1.0 — OpenTelemetry traces, distributed aggregation            |
 
 ---
 
@@ -304,7 +304,7 @@ python -m pytest tests/test_observability/ -v
 
 MIT License
 
-Copyright (c) 2024-2026 AGA Team
+Copyright (c) 2026 AGA Team
 
 ---
 
